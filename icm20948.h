@@ -24,7 +24,6 @@ typedef enum
 {
     ICM20948_OK = 0,
     ICM20948_ERROR,
-    ICM20948_BUSY,
     ICM20948_TIMEOUT
 } ICM20948_StatusTypeDef;
 
@@ -77,10 +76,21 @@ typedef struct
     float temperature_c;
 } ICM20948_Data_t;
 
+typedef struct
+{
+    float offset_x_raw;
+    float offset_y_raw;
+    float offset_z_raw;
+    uint8_t valid;
+} ICM20948_GyroCalibration_t;
+
 ICM20948_StatusTypeDef ICM20948_Init(void);
 ICM20948_StatusTypeDef ICM20948_ReadWhoAmI(uint8_t *who_am_i);
 ICM20948_StatusTypeDef ICM20948_SetAccelConfig(ICM20948_AccelFullScale_t full_scale, ICM20948_ODR_t odr);
 ICM20948_StatusTypeDef ICM20948_SetGyroConfig(ICM20948_GyroFullScale_t full_scale, ICM20948_ODR_t odr);
+ICM20948_StatusTypeDef ICM20948_CalibrateGyro(uint16_t sample_count);
+ICM20948_StatusTypeDef ICM20948_CalibrateGyroTimed(uint32_t duration_ms, uint16_t sample_delay_ms, uint16_t max_samples);
+void ICM20948_GetGyroCalibration(ICM20948_GyroCalibration_t *calibration);
 ICM20948_StatusTypeDef ICM20948_ReadRawData(ICM20948_RawData_t *raw_data);
 ICM20948_StatusTypeDef ICM20948_ConvertRawToSensorData(const ICM20948_RawData_t *raw_data, ICM20948_Data_t *sensor_data);
 ICM20948_StatusTypeDef ICM20948_ReadSensorData(ICM20948_Data_t *sensor_data);
