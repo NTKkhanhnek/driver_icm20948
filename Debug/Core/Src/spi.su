@@ -1,0 +1,12 @@
+spi.c:57:21:spi_wait_flag_set	24	static
+spi.c:70:21:spi_wait_flag_reset	24	static
+spi.c:83:13:spi_clear_ovr_flag	16	static
+spi.c:91:6:SPI_init	8	static
+spi.c:138:6:SPI_cs_low	4	static
+spi.c:143:6:SPI_cs_high	4	static
+spi.c:148:14:SPI_transfer_byte	24	static
+spi.c:191:14:SPI_transmit	24	static
+spi.c:212:14:SPI_receive	24	static
+spi.c:233:14:SPI_transmit_receive	32	static
+spi.c:254:14:SPI_mem_write	24	static
+spi.c:283:14:SPI_mem_read	24	static
